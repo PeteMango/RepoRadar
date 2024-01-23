@@ -2,10 +2,11 @@
 using namespace std;
 namespace fs = filesystem;
 
-vector<shared_ptr<MonitoredRepo>> repos;
+vector<shared_ptr<Repo>> repos;
 
 const string monitoredRepositories = "../data/repos.txt";
 
+/* gets directory name from directory path */
 string trimPath(string directoryPath)
 {
     string directName = "";
@@ -24,7 +25,7 @@ string trimPath(string directoryPath)
 /* recursively searches for directories with a .git folder */
 void findPaths(string directoryToScan, ofstream &out)
 {
-    if (!fs::is_directory(directoryToScan))
+    if (!fs::is_directory(directoryToScan)) // check if item is directory
     {
         throw runtime_error("not a path to a directory");
         return;
@@ -32,15 +33,12 @@ void findPaths(string directoryToScan, ofstream &out)
 
     string directName = trimPath(directoryToScan);
 
-    /* ignores large folders that can't possibly contain git repositories */
-    if (directName == "node_modules" || directName == "vendor")
+    if (directName == "node_modules" || directName == "vendor") // ignore large folders that can't contain git files
     {
-        // cout << "ignored: " << directName << "\n";
         return;
     }
-    // cout << "currently in [" << directName << "]\n";
 
-    for (const fs::directory_entry &eachItem : fs::directory_iterator(directoryToScan))
+    for (const fs::directory_entry &eachItem : fs::directory_iterator(directoryToScan)) // stop searching if found git
     {
         if (fs::is_directory(eachItem.path()))
         {
@@ -53,7 +51,7 @@ void findPaths(string directoryToScan, ofstream &out)
         }
     }
 
-    for (const fs::directory_entry &eachItem : fs::directory_iterator(directoryToScan))
+    for (const fs::directory_entry &eachItem : fs::directory_iterator(directoryToScan)) // search subdirectories
     {
         if (fs::is_directory(eachItem.path()))
         {
@@ -75,43 +73,34 @@ void findPaths(string directoryToScan, ofstream &out)
 
 void buildReposList()
 {
-    // repos.clear();
     ifstream inFile(monitoredRepositories);
-    if (!inFile)
+    if (!inFile) // open file
     {
         throw runtime_error("could not open the repo file\n");
         return;
     }
 
     string input = "";
-    while (getline(inFile, input))
+    while (getline(inFile, input)) // read from previously watched repos
     {
-        repos.push_back(make_shared<MonitoredRepo>(trimPath(input), input));
-    }
-    cout << "DEBUG: " << repos.size() << "\n";
-
-    for (auto repo : repos)
-    {
-        repo->populateCommits();
-        repo->filterCommitsByAuthor();
-        cout << repo->repoName << " " << repo->countCommits() << "\n";
+        repos.push_back(make_shared<Repo>(trimPath(input), input));
     }
 
     for (auto repo : repos)
     {
-        cout << "NAME: " << repo->repoName << "\n";
-        for (auto p : repo->authorCommits)
-        {
-            cout << p.first << " " << p.second.size() << "\n";
-        }
-        cout << "\n";
+        repo->getCommits(); // populate commits
     }
+    return;
 }
 
 int main()
 {
     string pathToDirectory = "/Users/petemango/Library/Mobile Documents/com~apple~CloudDocs/Documents";
     ofstream outFile(monitoredRepositories);
+
+    cout << "Please enter your github username: \n";
+    string githubUsername = "";
+    cin >> githubUsername;
 
     if (!outFile)
     {

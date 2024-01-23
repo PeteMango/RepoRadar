@@ -11,31 +11,29 @@
 #include <git2.h>
 using namespace std;
 
-class GitCommit
+class Commit
 {
 public:
-    string commitMessage, authorName, authorEmail;
-    git_time_t commitTime;
+    string message, author, email;
+    git_time_t timestamp;
 
-    GitCommit(git_time_t time, const string &msg, const git_signature *author);
+    Commit(git_time_t time, const string &msg, const git_signature *author);
 };
 
-class MonitoredRepo
+class Repo
 {
 public:
-    string repoName, diskPath, githubLink;
-    int numCommits;
-    vector<shared_ptr<GitCommit>> commits;
-    unordered_map<string, vector<shared_ptr<GitCommit>>> authorCommits;
-    unordered_map<string, string> emailAuthorMap;
+    string name, path, link;
+    int totalCommits, pastYearCommits;
+    vector<shared_ptr<Commit>> commitLog;
 
-    MonitoredRepo(const string &name, const string &path, const string &link);
-    MonitoredRepo(const string &name, const string &path);
-    void populateCommits();
-    void filterCommitsByAuthor();
-    int countCommits() const;
+    Repo(const string &name, const string &path);
+    Repo(const string &name, const string &path, const string &link); // constructors
 
-private:
+    void getCommits(); // populate commitLog
+
+protected:
+    vector<shared_ptr<Commit>> commitsByAuthor(const string &author);
 };
 
 #endif

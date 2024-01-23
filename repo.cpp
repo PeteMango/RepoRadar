@@ -1,8 +1,6 @@
 #include "include/repo.h"
 #include <git2.h>
 
-using namespace std;
-
 const string monitoredRepositories = "../data/repos.txt";
 
 string trimAuthorEmail(const char *authorEmail)
@@ -26,13 +24,25 @@ string trimAuthorEmail(const char *authorEmail)
     return ret;
 }
 
-GitCommit::GitCommit(git_time_t time, const string &msg, const git_signature *author) : commitTime(time), commitMessage(msg), authorName(author->name), authorEmail(trimAuthorEmail(author->email)) {}
+Commit::Commit(git_time_t time, const string &msg, const git_signature *author) : timestamp(time), message(msg)
+{
+    this->author = author->name;
+    this->email = trimAuthorEmail(author->email);
+}
 
-MonitoredRepo::MonitoredRepo(const string &name, const string &path, const string &link) : repoName(name), diskPath(path), githubLink(link) {}
+Repo::Repo(const string &name, const string &path, const string &link) : name(name), path(path), link(link)
+{
+    this->totalCommits = 0;
+    this->pastYearCommits = 0;
+}
 
-MonitoredRepo::MonitoredRepo(const string &name, const string &path) : repoName(name), diskPath(path) {}
+Repo::Repo(const string &name, const string &path) : name(name), path(path)
+{
+    this->totalCommits = 0;
+    this->pastYearCommits = 0;
+}
 
-void MonitoredRepo::populateCommits()
+void Repo::getCommits()
 {
     git_repository *repo = nullptr; // git2.h constants
     git_revwalk *walker = nullptr;
@@ -41,7 +51,7 @@ void MonitoredRepo::populateCommits()
 
     git_libgit2_init(); // init git2.h
 
-    if (git_repository_open(&repo, this->diskPath.c_str()) != 0) // open repo
+    if (git_repository_open(&repo, this->path.c_str()) != 0) // open repo
     {
         throw runtime_error("could not open repository");
         return;
@@ -64,21 +74,11 @@ void MonitoredRepo::populateCommits()
             continue;
         }
 
-        git_time_t commit_time = git_commit_time(commit);
-        const char *commit_msg = git_commit_message(commit);
-
-        string commitMessage = commit_msg ? commit_msg : "";
-
+        git_time_t timestamp = git_commit_time(commit);
+        string message = git_commit_message(commit) ? git_commit_message(commit) : "";
         const git_signature *author = git_commit_author(commit);
 
-        string authorEmail = trimAuthorEmail(author->email), authorName = author->name;
-
-        commits.push_back(make_shared<GitCommit>(commit_time, commitMessage, author));
-
-        if (this->emailAuthorMap.find(authorEmail) == this->emailAuthorMap.end())
-        {
-            this->emailAuthorMap.insert({authorEmail, authorName});
-        }
+        commitLog.push_back(make_shared<Commit>(timestamp, message, author));
 
         git_commit_free(commit);
     }
@@ -89,25 +89,15 @@ void MonitoredRepo::populateCommits()
     git_libgit2_shutdown(); // close git2.h
 }
 
-void MonitoredRepo::filterCommitsByAuthor()
+vector<shared_ptr<Commit>> Repo::commitsByAuthor(const string &author)
 {
-    for (auto cmt : commits)
+    vector<shared_ptr<Commit>> ret;
+    for (const auto &commit : this->commitLog)
     {
-        string authorEmail = cmt->authorEmail;
-        if (this->authorCommits.find(authorEmail) != this->authorCommits.end())
+        if (commit->author == author)
         {
-            this->authorCommits[authorEmail].push_back(cmt);
-        }
-        else
-        {
-            vector<shared_ptr<GitCommit>> cmtVect;
-            cmtVect.push_back(cmt);
-            this->authorCommits.insert(make_pair(authorEmail, cmtVect));
+            ret.push_back(commit);
         }
     }
-}
-
-int MonitoredRepo::countCommits() const
-{
-    return static_cast<int>(commits.size());
+    return ret;
 }
