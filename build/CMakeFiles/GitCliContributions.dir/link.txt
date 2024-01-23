@@ -1,1 +1,1 @@
-g++  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/GitCliContributions.dir/scan.cpp.o -o GitCliContributions  /opt/homebrew/lib/libgit2.dylib 
+g++  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/GitCliContributions.dir/scan.cpp.o CMakeFiles/GitCliContributions.dir/repo.cpp.o -o GitCliContributions  /opt/homebrew/lib/libgit2.dylib 

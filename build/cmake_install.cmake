@@ -1,4 +1,4 @@
-# Install script for directory: /Users/petemango/Documents/CLI Git Contributions
+# Install script for directory: /Users/petemango/Documents/Github/CLI Git Contributions
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/petemango/Documents/CLI Git Contributions/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/petemango/Documents/Github/CLI Git Contributions/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

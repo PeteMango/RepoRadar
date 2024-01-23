@@ -1,16 +1,9 @@
-#include <string>
-#include <vector>
-#include <fstream>
-#include <iostream>
-#include <filesystem>
-
-#include <git2.h>
+#include "include/header.h"
 using namespace std;
 namespace fs = filesystem;
 
 const string monitoredRepositories = "../data/repos.txt";
 
-/* trims the directory path to get directory name */
 string trimPath(string directoryPath)
 {
     string directName = "";
@@ -25,19 +18,14 @@ string trimPath(string directoryPath)
     reverse(directName.begin(), directName.end());
     return directName;
 }
-
-struct MonitoredRepos
-{
-    string name, path;
-
-    MonitoredRepos(string repoPath)
-    {
-        name = trimPath(repoPath);
-        path = repoPath;
-    }
-};
-
 vector<MonitoredRepos> repos;
+MonitoredRepos::MonitoredRepos(string repoPath)
+{
+    name = trimPath(repoPath);
+    path = repoPath;
+}
+
+GitCommits::GitCommits(git_time_t time) : commitTime(time) {}
 
 /* searches for Git repositories in a given path */
 void scanPath(string path)
@@ -92,6 +80,7 @@ void findPaths(string directoryToScan, ofstream &out)
 
 void buildReposList()
 {
+    repos.clear();
     ifstream inFile(monitoredRepositories);
     if (!inFile)
     {

@@ -57,10 +57,10 @@ RM = /opt/homebrew/Cellar/cmake/3.28.1/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/petemango/Documents/CLI Git Contributions"
+CMAKE_SOURCE_DIR = "/Users/petemango/Documents/Github/CLI Git Contributions"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/petemango/Documents/CLI Git Contributions/build"
+CMAKE_BINARY_DIR = "/Users/petemango/Documents/Github/CLI Git Contributions/build"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/petemango/Documents/CLI Git Contributions/build/CMakeFiles" "/Users/petemango/Documents/CLI Git Contributions/build//CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/petemango/Documents/Github/CLI Git Contributions/build/CMakeFiles" "/Users/petemango/Documents/Github/CLI Git Contributions/build//CMakeFiles/progress.marks"
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/petemango/Documents/CLI Git Contributions/build/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/petemango/Documents/Github/CLI Git Contributions/build/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -129,6 +129,30 @@ GitCliContributions/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/GitCliContributions.dir/build.make CMakeFiles/GitCliContributions.dir/build
 .PHONY : GitCliContributions/fast
 
+repo.o: repo.cpp.o
+.PHONY : repo.o
+
+# target to build an object file
+repo.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GitCliContributions.dir/build.make CMakeFiles/GitCliContributions.dir/repo.cpp.o
+.PHONY : repo.cpp.o
+
+repo.i: repo.cpp.i
+.PHONY : repo.i
+
+# target to preprocess a source file
+repo.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GitCliContributions.dir/build.make CMakeFiles/GitCliContributions.dir/repo.cpp.i
+.PHONY : repo.cpp.i
+
+repo.s: repo.cpp.s
+.PHONY : repo.s
+
+# target to generate assembly for a file
+repo.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GitCliContributions.dir/build.make CMakeFiles/GitCliContributions.dir/repo.cpp.s
+.PHONY : repo.cpp.s
+
 scan.o: scan.cpp.o
 .PHONY : scan.o
 
@@ -162,6 +186,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... GitCliContributions"
+	@echo "... repo.o"
+	@echo "... repo.i"
+	@echo "... repo.s"
 	@echo "... scan.o"
 	@echo "... scan.i"
 	@echo "... scan.s"

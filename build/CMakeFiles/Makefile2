@@ -54,10 +54,10 @@ RM = /opt/homebrew/Cellar/cmake/3.28.1/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/petemango/Documents/CLI Git Contributions"
+CMAKE_SOURCE_DIR = "/Users/petemango/Documents/Github/CLI Git Contributions"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/petemango/Documents/CLI Git Contributions/build"
+CMAKE_BINARY_DIR = "/Users/petemango/Documents/Github/CLI Git Contributions/build"
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -81,14 +81,14 @@ clean: CMakeFiles/GitCliContributions.dir/clean
 CMakeFiles/GitCliContributions.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/GitCliContributions.dir/build.make CMakeFiles/GitCliContributions.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/GitCliContributions.dir/build.make CMakeFiles/GitCliContributions.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/petemango/Documents/CLI Git Contributions/build/CMakeFiles" --progress-num=1,2 "Built target GitCliContributions"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/petemango/Documents/Github/CLI Git Contributions/build/CMakeFiles" --progress-num=1,2,3 "Built target GitCliContributions"
 .PHONY : CMakeFiles/GitCliContributions.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/GitCliContributions.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/petemango/Documents/CLI Git Contributions/build/CMakeFiles" 2
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/petemango/Documents/Github/CLI Git Contributions/build/CMakeFiles" 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/GitCliContributions.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/petemango/Documents/CLI Git Contributions/build/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/petemango/Documents/Github/CLI Git Contributions/build/CMakeFiles" 0
 .PHONY : CMakeFiles/GitCliContributions.dir/rule
 
 # Convenience name for target.

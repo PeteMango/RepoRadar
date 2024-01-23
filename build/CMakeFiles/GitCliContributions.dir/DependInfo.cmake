@@ -8,7 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/Users/petemango/Documents/CLI Git Contributions/scan.cpp" "CMakeFiles/GitCliContributions.dir/scan.cpp.o" "gcc" "CMakeFiles/GitCliContributions.dir/scan.cpp.o.d"
+  "/Users/petemango/Documents/Github/CLI Git Contributions/repo.cpp" "CMakeFiles/GitCliContributions.dir/repo.cpp.o" "gcc" "CMakeFiles/GitCliContributions.dir/repo.cpp.o.d"
+  "/Users/petemango/Documents/Github/CLI Git Contributions/scan.cpp" "CMakeFiles/GitCliContributions.dir/scan.cpp.o" "gcc" "CMakeFiles/GitCliContributions.dir/scan.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.
