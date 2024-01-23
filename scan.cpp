@@ -93,7 +93,18 @@ void buildReposList()
     for (auto repo : repos)
     {
         repo->populateCommits();
+        repo->filterCommitsByAuthor();
         cout << repo->repoName << " " << repo->countCommits() << "\n";
+    }
+
+    for (auto repo : repos)
+    {
+        cout << "NAME: " << repo->repoName << "\n";
+        for (auto p : repo->authorCommits)
+        {
+            cout << p.first << " " << p.second.size() << "\n";
+        }
+        cout << "\n";
     }
 }
 

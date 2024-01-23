@@ -5,7 +5,28 @@ using namespace std;
 
 const string monitoredRepositories = "../data/repos.txt";
 
-GitCommit::GitCommit(git_time_t time, const string &msg) : commitTime(time), commitMessage(msg) {}
+string trimAuthorEmail(const char *authorEmail)
+{
+    string email(authorEmail), ret = "";
+    for (int i = 0; i < email.length(); i++)
+    {
+        if (email[i] == '+')
+        {
+            for (int j = i + 1; j < email.length(); j++)
+            {
+                if (email[j] == '@')
+                {
+                    break;
+                }
+                ret += email[j];
+            }
+            break;
+        }
+    }
+    return ret;
+}
+
+GitCommit::GitCommit(git_time_t time, const string &msg, const git_signature *author) : commitTime(time), commitMessage(msg), authorName(author->name), authorEmail(trimAuthorEmail(author->email)) {}
 
 MonitoredRepo::MonitoredRepo(const string &name, const string &path, const string &link) : repoName(name), diskPath(path), githubLink(link) {}
 
@@ -48,7 +69,16 @@ void MonitoredRepo::populateCommits()
 
         string commitMessage = commit_msg ? commit_msg : "";
 
-        commits.push_back(make_shared<GitCommit>(commit_time, commitMessage));
+        const git_signature *author = git_commit_author(commit);
+
+        string authorEmail = trimAuthorEmail(author->email), authorName = author->name;
+
+        commits.push_back(make_shared<GitCommit>(commit_time, commitMessage, author));
+
+        if (this->emailAuthorMap.find(authorEmail) == this->emailAuthorMap.end())
+        {
+            this->emailAuthorMap.insert({authorEmail, authorName});
+        }
 
         git_commit_free(commit);
     }
@@ -57,6 +87,24 @@ void MonitoredRepo::populateCommits()
     git_repository_free(repo);
 
     git_libgit2_shutdown(); // close git2.h
+}
+
+void MonitoredRepo::filterCommitsByAuthor()
+{
+    for (auto cmt : commits)
+    {
+        string authorEmail = cmt->authorEmail;
+        if (this->authorCommits.find(authorEmail) != this->authorCommits.end())
+        {
+            this->authorCommits[authorEmail].push_back(cmt);
+        }
+        else
+        {
+            vector<shared_ptr<GitCommit>> cmtVect;
+            cmtVect.push_back(cmt);
+            this->authorCommits.insert(make_pair(authorEmail, cmtVect));
+        }
+    }
 }
 
 int MonitoredRepo::countCommits() const
