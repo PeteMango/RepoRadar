@@ -2,7 +2,12 @@
     "files.associations": {
         "iostream": "cpp",
         "stdexcept": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "__split_buffer": "cpp",
+        "fstream": "cpp",
+        "new": "cpp",
+        "typeinfo": "cpp",
+        "vector": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

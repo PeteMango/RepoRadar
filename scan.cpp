@@ -1,6 +1,8 @@
-#include "include/header.h"
+#include "include/repo.h"
 using namespace std;
 namespace fs = filesystem;
+
+vector<shared_ptr<MonitoredRepo>> repos;
 
 const string monitoredRepositories = "../data/repos.txt";
 
@@ -17,26 +19,6 @@ string trimPath(string directoryPath)
     }
     reverse(directName.begin(), directName.end());
     return directName;
-}
-vector<MonitoredRepos> repos;
-MonitoredRepos::MonitoredRepos(string repoPath)
-{
-    name = trimPath(repoPath);
-    path = repoPath;
-}
-
-GitCommits::GitCommits(git_time_t time) : commitTime(time) {}
-
-/* searches for Git repositories in a given path */
-void scanPath(string path)
-{
-    cout << "Scanning: " << path << "\n";
-}
-
-/* prints the github stats */
-void printStats()
-{
-    cout << "Printing Stats: \n";
 }
 
 /* recursively searches for directories with a .git folder */
@@ -68,6 +50,19 @@ void findPaths(string directoryToScan, ofstream &out)
                 out << directoryToScan << "\n";
                 return;
             }
+        }
+    }
+
+    for (const fs::directory_entry &eachItem : fs::directory_iterator(directoryToScan))
+    {
+        if (fs::is_directory(eachItem.path()))
+        {
+            string subdirectName = trimPath(eachItem.path());
+            if (subdirectName == ".git")
+            {
+                out << directoryToScan << "\n";
+                return;
+            }
             findPaths(eachItem.path(), out);
         }
         else
@@ -80,7 +75,7 @@ void findPaths(string directoryToScan, ofstream &out)
 
 void buildReposList()
 {
-    repos.clear();
+    // repos.clear();
     ifstream inFile(monitoredRepositories);
     if (!inFile)
     {
@@ -91,18 +86,20 @@ void buildReposList()
     string input = "";
     while (getline(inFile, input))
     {
-        repos.push_back(MonitoredRepos(input));
+        repos.push_back(make_shared<MonitoredRepo>(trimPath(input), input));
     }
-    // cout << "DEBUG: \n";
-    // for (auto repo : repos)
-    // {
-    //     cout << repo.name << " " << repo.path << "\n";
-    // }
+    cout << "DEBUG: " << repos.size() << "\n";
+
+    for (auto repo : repos)
+    {
+        repo->populateCommits();
+        cout << repo->repoName << " " << repo->countCommits() << "\n";
+    }
 }
 
 int main()
 {
-    string pathToDirectory = "/Users/petemango/Library/Mobile Documents/com~apple~CloudDocs";
+    string pathToDirectory = "/Users/petemango/Library/Mobile Documents/com~apple~CloudDocs/Documents";
     ofstream outFile(monitoredRepositories);
 
     if (!outFile)
@@ -120,6 +117,7 @@ int main()
         cerr << "ERROR: " << e.what() << "\n";
         return 1;
     }
+    outFile.close();
 
     try
     {
@@ -127,8 +125,7 @@ int main()
     }
     catch (runtime_error &e)
     {
-        cerr << "ERROR: " << e.what() << "\n";
+        cout << "ERROR: " << e.what() << "\n";
         return 1;
     }
-    outFile.close();
 }
