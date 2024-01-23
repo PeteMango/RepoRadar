@@ -1,4 +1,5 @@
 #include <string>
+#include <vector>
 #include <fstream>
 #include <iostream>
 #include <filesystem>
@@ -8,18 +9,6 @@ using namespace std;
 namespace fs = filesystem;
 
 const string monitoredRepositories = "../data/repos.txt";
-
-/* searches for Git repositories in a given path */
-void scanPath(string path)
-{
-    cout << "Scanning: " << path << "\n";
-}
-
-/* prints the github stats */
-void printStats()
-{
-    cout << "Printing Stats: \n";
-}
 
 /* trims the directory path to get directory name */
 string trimPath(string directoryPath)
@@ -35,6 +24,31 @@ string trimPath(string directoryPath)
     }
     reverse(directName.begin(), directName.end());
     return directName;
+}
+
+struct MonitoredRepos
+{
+    string name, path;
+
+    MonitoredRepos(string repoPath)
+    {
+        name = trimPath(repoPath);
+        path = repoPath;
+    }
+};
+
+vector<MonitoredRepos> repos;
+
+/* searches for Git repositories in a given path */
+void scanPath(string path)
+{
+    cout << "Scanning: " << path << "\n";
+}
+
+/* prints the github stats */
+void printStats()
+{
+    cout << "Printing Stats: \n";
 }
 
 /* recursively searches for directories with a .git folder */
@@ -76,6 +90,27 @@ void findPaths(string directoryToScan, ofstream &out)
     return;
 }
 
+void buildReposList()
+{
+    ifstream inFile(monitoredRepositories);
+    if (!inFile)
+    {
+        throw runtime_error("could not open the repo file\n");
+        return;
+    }
+
+    string input = "";
+    while (getline(inFile, input))
+    {
+        repos.push_back(MonitoredRepos(input));
+    }
+    // cout << "DEBUG: \n";
+    // for (auto repo : repos)
+    // {
+    //     cout << repo.name << " " << repo.path << "\n";
+    // }
+}
+
 int main()
 {
     string pathToDirectory = "/Users/petemango/Library/Mobile Documents/com~apple~CloudDocs";
@@ -90,6 +125,16 @@ int main()
     try
     {
         findPaths(pathToDirectory, outFile);
+    }
+    catch (runtime_error &e)
+    {
+        cerr << "ERROR: " << e.what() << "\n";
+        return 1;
+    }
+
+    try
+    {
+        buildReposList();
     }
     catch (runtime_error &e)
     {
