@@ -1,25 +1,27 @@
+#include <string>
+#include <fstream>
 #include <iostream>
 #include <filesystem>
+
 #include <git2.h>
 using namespace std;
 namespace fs = filesystem;
 
-/*
-    - searches for Git repositories in a given path
-*/
+const string monitoredRepositories = "../data/repos.txt";
+
+/* searches for Git repositories in a given path */
 void scanPath(string path)
 {
     cout << "Scanning: " << path << "\n";
 }
 
-/*
-    - prints the github stats
-*/
+/* prints the github stats */
 void printStats()
 {
     cout << "Printing Stats: \n";
 }
 
+/* trims the directory path to get directory name */
 string trimPath(string directoryPath)
 {
     string directName = "";
@@ -35,7 +37,8 @@ string trimPath(string directoryPath)
     return directName;
 }
 
-void findPaths(string directoryToScan)
+/* recursively searches for directories with a .git folder */
+void findPaths(string directoryToScan, ofstream &out)
 {
     if (!fs::is_directory(directoryToScan))
     {
@@ -60,10 +63,10 @@ void findPaths(string directoryToScan)
             string subdirectName = trimPath(eachItem.path());
             if (subdirectName == ".git")
             {
-                cout << trimPath(directoryToScan) << "\n";
+                out << directoryToScan << "\n";
                 return;
             }
-            findPaths(eachItem.path());
+            findPaths(eachItem.path(), out);
         }
         else
         {
@@ -76,13 +79,22 @@ void findPaths(string directoryToScan)
 int main()
 {
     string pathToDirectory = "/Users/petemango/Library/Mobile Documents/com~apple~CloudDocs";
+    ofstream outFile(monitoredRepositories);
+
+    if (!outFile)
+    {
+        cerr << "ERROR: could not open monitored repo file\n";
+        return 1;
+    }
+
     try
     {
-        findPaths(pathToDirectory);
+        findPaths(pathToDirectory, outFile);
     }
     catch (runtime_error &e)
     {
-        cerr << e.what() << "\n";
+        cerr << "ERROR: " << e.what() << "\n";
         return 1;
     }
+    outFile.close();
 }
