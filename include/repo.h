@@ -30,9 +30,20 @@ public:
     Repo(const string &name, const string &path);
     Repo(const string &name, const string &path, const string &link); // constructors
 
-    void getCommits();                                                // populate commitLog
-    void getGithubLink();                                             // gets repo's github link
-    vector<shared_ptr<Commit>> commitsByAuthor(const string &author); // get commits by an author
+    void getCommits();                                                         // populate commitLog
+    void getGithubLink();                                                      // gets repo's github link
+    vector<shared_ptr<Commit>> getCommitsByAuthor(const string &author);       // get commits by an author
+    vector<shared_ptr<Commit>> getPastYearCommits(vector<shared_ptr<Commit>>); // get commits from the past year
+};
+
+class Calendar
+{
+public:
+    vector<shared_ptr<Commit>> year[365];
+
+    Calendar();
+
+    void getDailyCommits(vector<shared_ptr<Commit>>);
 };
 
 #endif

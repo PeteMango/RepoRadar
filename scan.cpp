@@ -95,6 +95,7 @@ void buildReposList()
 
 int main()
 {
+    Calendar thisYear;
     string pathToDirectory = "/Users/petemango/Library/Mobile Documents/com~apple~CloudDocs/Documents";
     ofstream outFile(monitoredRepositories);
 
@@ -131,7 +132,14 @@ int main()
 
     for (auto repo : repos)
     {
-        vector<shared_ptr<Commit>> commits = repo->commitsByAuthor(githubUsername);
-        cout << repo->name << " " << repo->link << " " << commits.size() << "\n";
+        vector<shared_ptr<Commit>> commits = repo->getCommitsByAuthor(githubUsername);
+        vector<shared_ptr<Commit>> pastYear = repo->getPastYearCommits(commits);
+
+        thisYear.getDailyCommits(pastYear);
+        cout << repo->name << " " << pastYear.size() << "\n";
     }
+    // for (int i = 0; i < 365; i++)
+    // {
+    //     cout << i << " " << thisYear.year[i].size() << "\n";
+    // }
 }

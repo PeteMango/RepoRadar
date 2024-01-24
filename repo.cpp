@@ -44,6 +44,8 @@ Repo::Repo(const string &name, const string &path) : name(name), path(path)
     this->getGithubLink();
 }
 
+Calendar::Calendar() {}
+
 void Repo::getCommits()
 {
     git_repository *repo = nullptr; // git2.h constants
@@ -89,6 +91,10 @@ void Repo::getCommits()
     git_repository_free(repo);
 
     git_libgit2_shutdown(); // close git2.h
+
+    this->totalCommits = commitLog.size(); // sets totalCommit constant
+
+    return;
 }
 
 void Repo::getGithubLink()
@@ -120,9 +126,11 @@ void Repo::getGithubLink()
     git_remote_free(remote); // free remote and repo
     git_repository_free(repo);
     git_libgit2_shutdown();
+
+    return;
 }
 
-vector<shared_ptr<Commit>> Repo::commitsByAuthor(const string &author)
+vector<shared_ptr<Commit>> Repo::getCommitsByAuthor(const string &author)
 {
     vector<shared_ptr<Commit>> ret;
     for (const auto &commit : this->commitLog)
@@ -133,4 +141,30 @@ vector<shared_ptr<Commit>> Repo::commitsByAuthor(const string &author)
         }
     }
     return ret;
+}
+
+vector<shared_ptr<Commit>> Repo::getPastYearCommits(vector<shared_ptr<Commit>> commits)
+{
+    vector<shared_ptr<Commit>> ret;
+    time_t start = time(nullptr) - (365 * 24 * 60 * 60); // get time of 1 year ago
+
+    for (const auto &commit : commits)
+    {
+        if (commit->timestamp >= start)
+        {
+            ret.push_back(commit);
+        }
+    }
+    return ret;
+}
+
+void Calendar::getDailyCommits(vector<shared_ptr<Commit>> commits)
+{
+    time_t current = time(nullptr);
+    for (const auto &commit : commits)
+    {
+        int day = (current - commit->timestamp) / (24 * 60 * 60);
+        this->year[364 - day].push_back(commit);
+    }
+    return;
 }
