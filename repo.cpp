@@ -34,12 +34,14 @@ Repo::Repo(const string &name, const string &path, const string &link) : name(na
 {
     this->totalCommits = 0;
     this->pastYearCommits = 0;
+    this->getGithubLink();
 }
 
 Repo::Repo(const string &name, const string &path) : name(name), path(path)
 {
     this->totalCommits = 0;
     this->pastYearCommits = 0;
+    this->getGithubLink();
 }
 
 void Repo::getCommits()
@@ -89,12 +91,43 @@ void Repo::getCommits()
     git_libgit2_shutdown(); // close git2.h
 }
 
+void Repo::getGithubLink()
+{
+    git_repository *repo = nullptr;
+    git_remote *remote = nullptr;
+
+    git_libgit2_init();
+
+    if (git_repository_open(&repo, this->path.c_str()) != 0) // cannot open repo
+    {
+        git_libgit2_shutdown();
+        throw runtime_error("could not open repo");
+    }
+
+    if (git_remote_lookup(&remote, repo, "origin") != 0) // cannot find remote
+    {
+        git_repository_free(repo);
+        git_libgit2_shutdown();
+        throw runtime_error("could not get repo's origin");
+    }
+
+    const char *remote_url = git_remote_url(remote);
+    if (remote_url)
+    {
+        this->link = string(remote_url);
+    }
+
+    git_remote_free(remote); // free remote and repo
+    git_repository_free(repo);
+    git_libgit2_shutdown();
+}
+
 vector<shared_ptr<Commit>> Repo::commitsByAuthor(const string &author)
 {
     vector<shared_ptr<Commit>> ret;
     for (const auto &commit : this->commitLog)
     {
-        if (commit->author == author)
+        if (commit->email == author) // find commits of author
         {
             ret.push_back(commit);
         }

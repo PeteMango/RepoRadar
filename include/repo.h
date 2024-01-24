@@ -30,10 +30,9 @@ public:
     Repo(const string &name, const string &path);
     Repo(const string &name, const string &path, const string &link); // constructors
 
-    void getCommits(); // populate commitLog
-
-protected:
-    vector<shared_ptr<Commit>> commitsByAuthor(const string &author);
+    void getCommits();                                                // populate commitLog
+    void getGithubLink();                                             // gets repo's github link
+    vector<shared_ptr<Commit>> commitsByAuthor(const string &author); // get commits by an author
 };
 
 #endif

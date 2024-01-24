@@ -128,4 +128,10 @@ int main()
         cout << "ERROR: " << e.what() << "\n";
         return 1;
     }
+
+    for (auto repo : repos)
+    {
+        vector<shared_ptr<Commit>> commits = repo->commitsByAuthor(githubUsername);
+        cout << repo->name << " " << repo->link << " " << commits.size() << "\n";
+    }
 }
