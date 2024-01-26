@@ -36,14 +36,4 @@ public:
     vector<shared_ptr<Commit>> getPastYearCommits(vector<shared_ptr<Commit>>); // get commits from the past year
 };
 
-class Calendar
-{
-public:
-    vector<shared_ptr<Commit>> year[365];
-
-    Calendar();
-
-    void getDailyCommits(vector<shared_ptr<Commit>>);
-};
-
 #endif

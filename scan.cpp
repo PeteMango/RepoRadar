@@ -1,4 +1,5 @@
 #include "include/repo.h"
+#include "include/calendar.h"
 using namespace std;
 namespace fs = filesystem;
 
@@ -138,8 +139,4 @@ int main()
         thisYear.getDailyCommits(pastYear);
         cout << repo->name << " " << pastYear.size() << "\n";
     }
-    // for (int i = 0; i < 365; i++)
-    // {
-    //     cout << i << " " << thisYear.year[i].size() << "\n";
-    // }
 }

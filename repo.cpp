@@ -1,5 +1,5 @@
 #include "include/repo.h"
-#include <git2.h>
+#include "include/calendar.h"
 
 const string monitoredRepositories = "../data/repos.txt";
 
@@ -43,8 +43,6 @@ Repo::Repo(const string &name, const string &path) : name(name), path(path)
     this->pastYearCommits = 0;
     this->getGithubLink();
 }
-
-Calendar::Calendar() {}
 
 void Repo::getCommits()
 {
