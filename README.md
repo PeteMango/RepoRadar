@@ -21,6 +21,9 @@ libgit2 can be installed via homebrew
 brew install libgit2
 ```
 
+### Alias
+alternatively, you can add the alias gitgraph to your ~/.zshrc (or bash_profile) to run the script/run.sh file
+
 ### Demo
 ![demo](/assets/demo_gif.gif)
 
