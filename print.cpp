@@ -210,12 +210,12 @@ void Calendar::printCommits(vector<int> dailyCommits)
     }
 }
 
-int main()
-{
-    vector<int> commitData(140);
-    generate(commitData.begin(), commitData.end(), []()
-             { return rand() % 15; });
-    Calendar c;
-    // c.printCell(4, false);
-    c.printCommits(commitData);
-}
+// int main()
+// {
+//     vector<int> commitData(140);
+//     generate(commitData.begin(), commitData.end(), []()
+//              { return rand() % 15; });
+//     Calendar c;
+//     // c.printCell(4, false);
+//     c.printCommits(commitData);
+// }

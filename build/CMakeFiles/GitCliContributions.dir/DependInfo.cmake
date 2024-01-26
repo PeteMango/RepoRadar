@@ -8,6 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/Users/petemango/Documents/Github/CLI Git Contributions/main.cpp" "CMakeFiles/GitCliContributions.dir/main.cpp.o" "gcc" "CMakeFiles/GitCliContributions.dir/main.cpp.o.d"
+  "/Users/petemango/Documents/Github/CLI Git Contributions/print.cpp" "CMakeFiles/GitCliContributions.dir/print.cpp.o" "gcc" "CMakeFiles/GitCliContributions.dir/print.cpp.o.d"
   "/Users/petemango/Documents/Github/CLI Git Contributions/repo.cpp" "CMakeFiles/GitCliContributions.dir/repo.cpp.o" "gcc" "CMakeFiles/GitCliContributions.dir/repo.cpp.o.d"
   "/Users/petemango/Documents/Github/CLI Git Contributions/scan.cpp" "CMakeFiles/GitCliContributions.dir/scan.cpp.o" "gcc" "CMakeFiles/GitCliContributions.dir/scan.cpp.o.d"
   )

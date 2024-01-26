@@ -850,4 +850,6 @@ CMakeFiles/GitCliContributions.dir/scan.cpp.o: \
   /opt/homebrew/include/git2/signature.h \
   /opt/homebrew/include/git2/tag.h \
   /opt/homebrew/include/git2/transaction.h \
-  /opt/homebrew/include/git2/version.h
+  /opt/homebrew/include/git2/version.h \
+  /Users/petemango/Documents/Github/CLI\ Git\ Contributions/include/calendar.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/c++/v1/deque

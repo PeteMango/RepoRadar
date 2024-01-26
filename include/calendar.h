@@ -1,11 +1,12 @@
 #ifndef CALENDAR_H
 #define CALENDAR_H
 
-#include <iostream>
-#include <iomanip>
+#include <deque>
 #include <ctime>
 #include <vector>
-#include <deque>
+#include <iomanip>
+#include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -13,8 +14,6 @@ class Calendar
 {
 public:
     Calendar();
-
-    // void getDailyCommits(vector<shared_ptr<Commit>>);
     void printCommits(vector<int> dailyCommits);
     void printCell(int val, bool today);
 

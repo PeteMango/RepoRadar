@@ -1,5 +1,5 @@
-CMakeFiles/GitCliContributions.dir/repo.cpp.o: \
-  /Users/petemango/Documents/Github/CLI\ Git\ Contributions/repo.cpp \
+CMakeFiles/GitCliContributions.dir/main.cpp.o: \
+  /Users/petemango/Documents/Github/CLI\ Git\ Contributions/main.cpp \
   /Users/petemango/Documents/Github/CLI\ Git\ Contributions/include/repo.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/c++/v1/string \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/c++/v1/__algorithm/max.h \
@@ -851,5 +851,6 @@ CMakeFiles/GitCliContributions.dir/repo.cpp.o: \
   /opt/homebrew/include/git2/tag.h \
   /opt/homebrew/include/git2/transaction.h \
   /opt/homebrew/include/git2/version.h \
+  /Users/petemango/Documents/Github/CLI\ Git\ Contributions/include/scan.h \
   /Users/petemango/Documents/Github/CLI\ Git\ Contributions/include/calendar.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/c++/v1/deque

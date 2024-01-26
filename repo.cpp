@@ -1,8 +1,6 @@
 #include "include/repo.h"
 #include "include/calendar.h"
 
-const string monitoredRepositories = "../data/repos.txt";
-
 string trimAuthorEmail(const char *authorEmail)
 {
     string email(authorEmail), ret = "";
@@ -154,15 +152,4 @@ vector<shared_ptr<Commit>> Repo::getPastYearCommits(vector<shared_ptr<Commit>> c
         }
     }
     return ret;
-}
-
-void Calendar::getDailyCommits(vector<shared_ptr<Commit>> commits)
-{
-    time_t current = time(nullptr);
-    for (const auto &commit : commits)
-    {
-        int day = (current - commit->timestamp) / (24 * 60 * 60);
-        this->year[364 - day].push_back(commit);
-    }
-    return;
 }

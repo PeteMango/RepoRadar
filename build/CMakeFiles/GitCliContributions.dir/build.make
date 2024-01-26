@@ -97,20 +97,52 @@ CMakeFiles/GitCliContributions.dir/repo.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/GitCliContributions.dir/repo.cpp.s"
 	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/petemango/Documents/Github/CLI Git Contributions/repo.cpp" -o CMakeFiles/GitCliContributions.dir/repo.cpp.s
 
+CMakeFiles/GitCliContributions.dir/print.cpp.o: CMakeFiles/GitCliContributions.dir/flags.make
+CMakeFiles/GitCliContributions.dir/print.cpp.o: /Users/petemango/Documents/Github/CLI\ Git\ Contributions/print.cpp
+CMakeFiles/GitCliContributions.dir/print.cpp.o: CMakeFiles/GitCliContributions.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/petemango/Documents/Github/CLI Git Contributions/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/GitCliContributions.dir/print.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GitCliContributions.dir/print.cpp.o -MF CMakeFiles/GitCliContributions.dir/print.cpp.o.d -o CMakeFiles/GitCliContributions.dir/print.cpp.o -c "/Users/petemango/Documents/Github/CLI Git Contributions/print.cpp"
+
+CMakeFiles/GitCliContributions.dir/print.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/GitCliContributions.dir/print.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/petemango/Documents/Github/CLI Git Contributions/print.cpp" > CMakeFiles/GitCliContributions.dir/print.cpp.i
+
+CMakeFiles/GitCliContributions.dir/print.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/GitCliContributions.dir/print.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/petemango/Documents/Github/CLI Git Contributions/print.cpp" -o CMakeFiles/GitCliContributions.dir/print.cpp.s
+
+CMakeFiles/GitCliContributions.dir/main.cpp.o: CMakeFiles/GitCliContributions.dir/flags.make
+CMakeFiles/GitCliContributions.dir/main.cpp.o: /Users/petemango/Documents/Github/CLI\ Git\ Contributions/main.cpp
+CMakeFiles/GitCliContributions.dir/main.cpp.o: CMakeFiles/GitCliContributions.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/petemango/Documents/Github/CLI Git Contributions/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/GitCliContributions.dir/main.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GitCliContributions.dir/main.cpp.o -MF CMakeFiles/GitCliContributions.dir/main.cpp.o.d -o CMakeFiles/GitCliContributions.dir/main.cpp.o -c "/Users/petemango/Documents/Github/CLI Git Contributions/main.cpp"
+
+CMakeFiles/GitCliContributions.dir/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/GitCliContributions.dir/main.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/petemango/Documents/Github/CLI Git Contributions/main.cpp" > CMakeFiles/GitCliContributions.dir/main.cpp.i
+
+CMakeFiles/GitCliContributions.dir/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/GitCliContributions.dir/main.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/petemango/Documents/Github/CLI Git Contributions/main.cpp" -o CMakeFiles/GitCliContributions.dir/main.cpp.s
+
 # Object files for target GitCliContributions
 GitCliContributions_OBJECTS = \
 "CMakeFiles/GitCliContributions.dir/scan.cpp.o" \
-"CMakeFiles/GitCliContributions.dir/repo.cpp.o"
+"CMakeFiles/GitCliContributions.dir/repo.cpp.o" \
+"CMakeFiles/GitCliContributions.dir/print.cpp.o" \
+"CMakeFiles/GitCliContributions.dir/main.cpp.o"
 
 # External object files for target GitCliContributions
 GitCliContributions_EXTERNAL_OBJECTS =
 
 GitCliContributions: CMakeFiles/GitCliContributions.dir/scan.cpp.o
 GitCliContributions: CMakeFiles/GitCliContributions.dir/repo.cpp.o
+GitCliContributions: CMakeFiles/GitCliContributions.dir/print.cpp.o
+GitCliContributions: CMakeFiles/GitCliContributions.dir/main.cpp.o
 GitCliContributions: CMakeFiles/GitCliContributions.dir/build.make
 GitCliContributions: /opt/homebrew/lib/libgit2.dylib
 GitCliContributions: CMakeFiles/GitCliContributions.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/Users/petemango/Documents/Github/CLI Git Contributions/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable GitCliContributions"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/Users/petemango/Documents/Github/CLI Git Contributions/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable GitCliContributions"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/GitCliContributions.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

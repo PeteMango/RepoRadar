@@ -129,6 +129,54 @@ GitCliContributions/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/GitCliContributions.dir/build.make CMakeFiles/GitCliContributions.dir/build
 .PHONY : GitCliContributions/fast
 
+main.o: main.cpp.o
+.PHONY : main.o
+
+# target to build an object file
+main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GitCliContributions.dir/build.make CMakeFiles/GitCliContributions.dir/main.cpp.o
+.PHONY : main.cpp.o
+
+main.i: main.cpp.i
+.PHONY : main.i
+
+# target to preprocess a source file
+main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GitCliContributions.dir/build.make CMakeFiles/GitCliContributions.dir/main.cpp.i
+.PHONY : main.cpp.i
+
+main.s: main.cpp.s
+.PHONY : main.s
+
+# target to generate assembly for a file
+main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GitCliContributions.dir/build.make CMakeFiles/GitCliContributions.dir/main.cpp.s
+.PHONY : main.cpp.s
+
+print.o: print.cpp.o
+.PHONY : print.o
+
+# target to build an object file
+print.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GitCliContributions.dir/build.make CMakeFiles/GitCliContributions.dir/print.cpp.o
+.PHONY : print.cpp.o
+
+print.i: print.cpp.i
+.PHONY : print.i
+
+# target to preprocess a source file
+print.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GitCliContributions.dir/build.make CMakeFiles/GitCliContributions.dir/print.cpp.i
+.PHONY : print.cpp.i
+
+print.s: print.cpp.s
+.PHONY : print.s
+
+# target to generate assembly for a file
+print.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GitCliContributions.dir/build.make CMakeFiles/GitCliContributions.dir/print.cpp.s
+.PHONY : print.cpp.s
+
 repo.o: repo.cpp.o
 .PHONY : repo.o
 
@@ -186,6 +234,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... GitCliContributions"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
+	@echo "... print.o"
+	@echo "... print.i"
+	@echo "... print.s"
 	@echo "... repo.o"
 	@echo "... repo.i"
 	@echo "... repo.s"

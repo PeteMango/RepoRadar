@@ -3,8 +3,6 @@
 using namespace std;
 namespace fs = filesystem;
 
-vector<shared_ptr<Repo>> repos;
-
 const string monitoredRepositories = "../data/repos.txt";
 
 /* gets directory name from directory path */
@@ -72,7 +70,7 @@ void findPaths(string directoryToScan, ofstream &out)
     return;
 }
 
-void buildReposList()
+void buildReposList(vector<shared_ptr<Repo>> &repos)
 {
     ifstream inFile(monitoredRepositories);
     if (!inFile) // open file
@@ -92,51 +90,4 @@ void buildReposList()
         repo->getCommits(); // populate commits
     }
     return;
-}
-
-int main()
-{
-    Calendar thisYear;
-    string pathToDirectory = "/Users/petemango/Library/Mobile Documents/com~apple~CloudDocs/Documents";
-    ofstream outFile(monitoredRepositories);
-
-    cout << "Please enter your github username: \n";
-    string githubUsername = "";
-    cin >> githubUsername;
-
-    if (!outFile)
-    {
-        cerr << "ERROR: could not open monitored repo file\n";
-        return 1;
-    }
-
-    try
-    {
-        findPaths(pathToDirectory, outFile);
-    }
-    catch (runtime_error &e)
-    {
-        cerr << "ERROR: " << e.what() << "\n";
-        return 1;
-    }
-    outFile.close();
-
-    try
-    {
-        buildReposList();
-    }
-    catch (runtime_error &e)
-    {
-        cout << "ERROR: " << e.what() << "\n";
-        return 1;
-    }
-
-    for (auto repo : repos)
-    {
-        vector<shared_ptr<Commit>> commits = repo->getCommitsByAuthor(githubUsername);
-        vector<shared_ptr<Commit>> pastYear = repo->getPastYearCommits(commits);
-
-        thisYear.getDailyCommits(pastYear);
-        cout << repo->name << " " << pastYear.size() << "\n";
-    }
 }

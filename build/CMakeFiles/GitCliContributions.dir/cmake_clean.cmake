@@ -1,4 +1,8 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/GitCliContributions.dir/main.cpp.o"
+  "CMakeFiles/GitCliContributions.dir/main.cpp.o.d"
+  "CMakeFiles/GitCliContributions.dir/print.cpp.o"
+  "CMakeFiles/GitCliContributions.dir/print.cpp.o.d"
   "CMakeFiles/GitCliContributions.dir/repo.cpp.o"
   "CMakeFiles/GitCliContributions.dir/repo.cpp.o.d"
   "CMakeFiles/GitCliContributions.dir/scan.cpp.o"
