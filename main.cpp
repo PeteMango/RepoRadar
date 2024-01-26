@@ -4,8 +4,8 @@
 
 const string monitoredRepositories = "../data/repos.txt";
 vector<shared_ptr<Repo>> repos;
-vector<string> githubUsername = {"PeteMango"};
-vector<string> pathToDirectory = {"/Users/petemango/Library/Mobile Documents/com~apple~CloudDocs/Documents/Github", "/Users/petemango/Library/Mobile Documents/com~apple~CloudDocs/Documents/University"};
+vector<string> githubUsername = {};
+vector<string> pathToDirectory = {};
 vector<int> year(365, 0);
 
 int main()
