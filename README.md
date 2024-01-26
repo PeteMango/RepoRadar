@@ -27,3 +27,5 @@ alternatively, you can add the alias gitgraph to your ~/.zshrc (or bash_profile)
 ### Demo
 ![demo](/assets/demo_gif.gif)
 
+### P.S
+if you are wondering where the name from, its ChatGPT generated...
