@@ -1,0 +1,21 @@
+/Users/petemango/Library/Mobile Documents/com~apple~CloudDocs/Documents/Github/SQLite_c
+/Users/petemango/Library/Mobile Documents/com~apple~CloudDocs/Documents/Github/ECIESPython
+/Users/petemango/Library/Mobile Documents/com~apple~CloudDocs/Documents/Github/WATonomous/infra-config
+/Users/petemango/Library/Mobile Documents/com~apple~CloudDocs/Documents/Github/WATonomous/terraform
+/Users/petemango/Library/Mobile Documents/com~apple~CloudDocs/Documents/Github/WATonomous/infra-notes
+/Users/petemango/Library/Mobile Documents/com~apple~CloudDocs/Documents/Github/WATonomous/wato_asd_training
+/Users/petemango/Library/Mobile Documents/com~apple~CloudDocs/Documents/Github/WATonomous/wato_finance_system
+/Users/petemango/Library/Mobile Documents/com~apple~CloudDocs/Documents/Github/WATonomous/Perception-Research
+/Users/petemango/Library/Mobile Documents/com~apple~CloudDocs/Documents/Github/WATonomous/terraform-provider-discord
+/Users/petemango/Library/Mobile Documents/com~apple~CloudDocs/Documents/Github/WATonomous/infrastructure-support
+/Users/petemango/Library/Mobile Documents/com~apple~CloudDocs/Documents/Github/WATonomous/Prediction-Research
+/Users/petemango/Library/Mobile Documents/com~apple~CloudDocs/Documents/Github/WATonomous/wato_monorepo_autodrive
+/Users/petemango/Library/Mobile Documents/com~apple~CloudDocs/Documents/Github/WATonomous/wato_website
+/Users/petemango/Library/Mobile Documents/com~apple~CloudDocs/Documents/Github/WATonomous/wato_monorepo
+/Users/petemango/Library/Mobile Documents/com~apple~CloudDocs/Documents/Github/Journex
+/Users/petemango/Library/Mobile Documents/com~apple~CloudDocs/Documents/Github/Leetcode Contests
+/Users/petemango/Library/Mobile Documents/com~apple~CloudDocs/Documents/Github/CLI Git Contributions
+/Users/petemango/Library/Mobile Documents/com~apple~CloudDocs/Documents/Github/Rideshare
+/Users/petemango/Library/Mobile Documents/com~apple~CloudDocs/Documents/Github/School/1A
+/Users/petemango/Library/Mobile Documents/com~apple~CloudDocs/Documents/Github/School/2A
+/Users/petemango/Library/Mobile Documents/com~apple~CloudDocs/Documents/Github/School/1B
