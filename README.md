@@ -16,6 +16,11 @@ make
 * libgit2
 * cmake
 
+libgit2 can be installed via homebrew 
+```
+brew install libgit2
+```
+
 ### Demo
 ![demo](/assets/demo_gif.gif)
 
