@@ -22,7 +22,7 @@ brew install libgit2
 ```
 
 ### Alias
-alternatively, you can add the alias gitgraph to your ~/.zshrc (or bash_profile) to run the script/run.sh file
+alternatively, you can add the alias gitgraph to your ~/.zshrc (or bash_profile) to run the script/run.sh file. make sure to update the shell script with the path to your directory.
 
 ### Demo
 ![demo](/assets/demo_gif.gif)
